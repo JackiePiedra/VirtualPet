@@ -120,7 +120,12 @@ namespace VirtualPet
         
         public void Eat()
         {
-            if (this.hungerLevel < 50)
+            if (this.hungerLevel >=100)
+            {
+                Console.WriteLine("\nHANGRY LEVEL: 1,000.. Excuse me, I need to replenish! --- "+ Name);
+                this.hungerLevel -= 50;
+            }
+            else if (this.hungerLevel < 50)
             {
                 Console.WriteLine("\n\tNo thanks, I'm not really hungry.. --- "+Name);
             }
@@ -156,7 +161,12 @@ namespace VirtualPet
 
         public void Sleep()
         {
-            if (this.sleepyLevel < 60)
+            if (this.sleepyLevel>=100)
+            {
+                Console.WriteLine("I need a 14 hour nap, STAT! I'll see you later.. --- "+Name);
+                this.sleepyLevel -= 50;
+            }
+            else if (this.sleepyLevel < 60)
             {
                 Console.WriteLine("\n\tI'm bright eyed and bushy tailed, no time for napping! --- "+Name);
             }
@@ -192,9 +202,11 @@ namespace VirtualPet
                     Console.WriteLine("\tI won!! --- " + Name);
                     break;
                 default:
-                    Console.WriteLine("\n\tOr we can just dance... Woo hoo! --- "+Name);
+                    Console.WriteLine("\n\tOr we can just dance...This is my favorite song! Woo hoo! --- "+Name);
+                    this.boredomLevel -= 40;
                     break;
             }
+            
         }
 
     }

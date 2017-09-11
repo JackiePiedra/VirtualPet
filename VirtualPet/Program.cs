@@ -20,7 +20,7 @@ namespace VirtualPet
             {
                 Console.WriteLine("What is his new name?");
                 manatee.Name = Console.ReadLine();
-                Console.WriteLine("{0}, huh? He likes it!", manatee.Name);
+                Console.WriteLine("\n{0}, huh? He likes it!", manatee.Name);
             }
             else if (nameChange == 2)
             {
