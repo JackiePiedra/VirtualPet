@@ -29,7 +29,7 @@ namespace VirtualPet
 
         public int HappyLevel
         {
-            get { return happyLevel; }
+            //get { return happyLevel; }
             set
             {
                 if(value < 0)
@@ -45,10 +45,28 @@ namespace VirtualPet
                     happyLevel = value;
                 }
             }
+            get { return happyLevel; }
         }
 
         public int BoredomLevel
         {
+            //get { return boredomLevel; }
+            set
+            {
+                if(boredomLevel<0)
+                {
+                    value = 0;
+                }
+                else if(boredomLevel>100)
+                {
+                    value = 100;
+                }
+                else
+                {
+                    boredomLevel = value;
+                }
+
+            }
             get { return boredomLevel; }
         }
 
@@ -78,14 +96,28 @@ namespace VirtualPet
                 this.hungerLevel -= 10;
                 this.sleepyLevel += 10;
                 this.happyLevel += 10;
+                this.boredomLevel += 10;
                 Console.WriteLine("\n\tWhy thank you! I think I will have a snack!");
+                Console.WriteLine("\nWhat do you want to feed Hugh?");
+                Console.WriteLine("1. Apple \n2. Fish");
+                int snack = int.Parse(Console.ReadLine());
+                if(snack == 1 || snack ==2)
+                {
+                    Console.WriteLine("\n\tYummy! Thanks!");
+                }
+                else
+                {
+                    Console.WriteLine("\n\tHmm, no thanks! Maybe next time!");
+                }
             }
             else
             {
                 this.hungerLevel -= 30;
                 this.sleepyLevel += 10;
                 this.happyLevel += 10;
-                Console.WriteLine("\n\tI was famished... but now I am pretty stuffed for a while!");
+                this.boredomLevel += 10;
+                Console.WriteLine("\n\tLobster Bisque --  my favorite!");
+                Console.WriteLine("\tI was famished... but now I am pretty stuffed for a while!");
             }
         }
 
@@ -97,9 +129,9 @@ namespace VirtualPet
             }
             else if (this.sleepyLevel >= 80)
             {
-                this.sleepyLevel -= 40;
+                this.sleepyLevel -= 50;
                 this.happyLevel += 10;
-                this.boredomLevel += 40;
+                this.boredomLevel += 20;
                 this.hungerLevel += 20;
                 Console.WriteLine("\n\tYaaawnn... Time for some Zzzz's");
             }

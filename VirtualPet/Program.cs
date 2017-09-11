@@ -11,12 +11,25 @@ namespace VirtualPet
         static void Main(string[] args)
         {
             Manatee manatee = new Manatee();
-            Console.WriteLine("Welcome to virtual pet -- meet your new pet, Hugh Manatee!");
+            Console.WriteLine("Thank you for adopting a virtual pet! Let's meet him, shall we?");
+            Console.WriteLine("\nMeet {0}!",manatee.Name); 
             Console.WriteLine("He is a manatee from the waters of Florida and is {0} years old!", manatee.Age);
+            Console.WriteLine("Did you want to change his name?\n1. Yes \n2. No");
+            int nameChange = int.Parse(Console.ReadLine());
+            if(nameChange ==1)
+            {
+                Console.WriteLine("What is his new name?");
+                manatee.Name = Console.ReadLine();
+                Console.WriteLine("{0}, huh? He likes it!", manatee.Name);
+            }
+            else
+            {
+                Console.WriteLine("Then {0} it is!", manatee.Name);
+            }
             Console.WriteLine("\nWhat is your name?");
             string ownerName = Console.ReadLine();
 
-            Console.WriteLine("Hugh is so happy to meet you, {0}! Let's get started..", ownerName);
+            Console.WriteLine("\n\tWell, "+manatee.Name+" is so happy to meet you, {0}! Let's get started..", ownerName);
             int userInput;
             do
             {
@@ -43,8 +56,10 @@ namespace VirtualPet
                         manatee.Sleep();
                         break;
                     case 4:
-                        Console.WriteLine("Well it's been fun...");
-                        break;
+                        //Console.WriteLine("Well it's been fun...");
+                        //break;
+                        Console.WriteLine("Thanks for everything, {0}, but I am off to Sea World now.. I'll miss you!", ownerName); 
+                        return;
                     default:
                         Console.WriteLine("Hmmm... I don't think {0} wants to do that. Pick something else.", manatee.Name);
                         break;
@@ -54,7 +69,7 @@ namespace VirtualPet
 
             } while (userInput != 4);
 
-            Console.WriteLine("Thanks for everything, {0}, but I am off to Sea World now..", ownerName);
+            //Console.WriteLine("Thanks for everything, {0}, but I am off to Sea World now.. I'll miss you!", ownerName);
 
 
         }
