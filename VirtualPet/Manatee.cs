@@ -29,14 +29,14 @@ namespace VirtualPet
 
         public int HappyLevel
         {
-            //get { return happyLevel; }
+            get { return happyLevel; }
             set
             {
-                if(value < 0)
+                if (value < 0)
                 {
                     happyLevel = 0;
                 }
-                else if(happyLevel >100)
+                else if (value > 100)
                 {
                     happyLevel = 100;
                 }
@@ -45,121 +45,154 @@ namespace VirtualPet
                     happyLevel = value;
                 }
             }
-            get { return happyLevel; }
         }
 
         public int BoredomLevel
         {
-            //get { return boredomLevel; }
+            get { return boredomLevel; }
             set
             {
-                if(boredomLevel<0)
+                if (value < 0)
                 {
-                    value = 0;
+                    boredomLevel = 0;
                 }
-                else if(boredomLevel>100)
+                else if (value > 100)
                 {
-                    value = 100;
+                    boredomLevel = 100;
                 }
                 else
                 {
                     boredomLevel = value;
                 }
-
             }
-            get { return boredomLevel; }
+        }
+
+        public int HungerLevel
+        {
+            get { return hungerLevel; }
+            set
+            {
+                if (value < 0)
+                {
+                    hungerLevel = 0;
+                }
+                else if (value > 100)
+                {
+                    hungerLevel = 100;
+                }
+                else
+                {
+                    hungerLevel = value;
+                }
+            }
+        }
+
+        public int SleepyLevel
+        {
+            
+            set
+            {
+                if (value < 0)
+                {
+                    sleepyLevel = 0;
+                }
+                else if (value > 100)
+                {
+                    sleepyLevel = 100;
+                }
+                else
+                {
+                    sleepyLevel = value;
+                }
+            }
+            get { return sleepyLevel; }
         }
 
         public Manatee()
         {
             this.name = "Hugh";
             this.age = 2;
-            this.hungerLevel = 0;
-            this.boredomLevel = 0;
-            this.sleepyLevel = 0;
+            this.hungerLevel = 50;
+            this.boredomLevel = 50;
+            this.sleepyLevel = 50;
             this.happyLevel = 50;
         }
-
-        //hungry -- each time manatee is fed, -30 hungryLevel and +10 sleepyLevel and +10 happyLevel -- EAT
-        //boredom -- each time manatee sleeps, +40 boredomLevel. each manatee plays, -20 boredomLevel
-        //sleeps -- each time manatee sleeps, +25 hungryLevel and +40 boredomLevel and +10 happyLevel -- SLEEP
-        //plays -- each time manatee plays, +40 hungryLevel and +30 happyLevel and +25 sleepyLevel -- PLAY
-
+        
         public void Eat()
         {
             if (this.hungerLevel < 50)
             {
-                Console.WriteLine("\n\tNo thanks, I'm not really hungry..");
+                Console.WriteLine("\n\tNo thanks, I'm not really hungry.. --- "+Name);
             }
-            else if (this.hungerLevel >= 50 && this.hungerLevel > 75)
+            else if (this.hungerLevel >= 50 && this.hungerLevel < 70)
             {
                 this.hungerLevel -= 10;
                 this.sleepyLevel += 10;
-                this.happyLevel += 10;
+                //this.happyLevel += 2;
                 this.boredomLevel += 10;
-                Console.WriteLine("\n\tWhy thank you! I think I will have a snack!");
+                Console.WriteLine("\n\tWhy thank you! I think I will have a snack! --- "+Name);
                 Console.WriteLine("\nWhat do you want to feed Hugh?");
                 Console.WriteLine("1. Apple \n2. Fish");
                 int snack = int.Parse(Console.ReadLine());
                 if(snack == 1 || snack ==2)
                 {
-                    Console.WriteLine("\n\tYummy! Thanks!");
+                    Console.WriteLine("\n\tYummy! Thanks! --- "+Name);
                 }
                 else
                 {
-                    Console.WriteLine("\n\tHmm, no thanks! Maybe next time!");
+                    Console.WriteLine("\n\tHmm, no thanks! Maybe next time! --- "+Name);
                 }
             }
             else
             {
-                this.hungerLevel -= 30;
+                this.hungerLevel -= 10;
                 this.sleepyLevel += 10;
-                this.happyLevel += 10;
+                this.happyLevel += 5;
                 this.boredomLevel += 10;
                 Console.WriteLine("\n\tLobster Bisque --  my favorite!");
-                Console.WriteLine("\tI was famished... but now I am pretty stuffed for a while!");
+                Console.WriteLine("\tI was famished... but now I am pretty stuffed for a while! --- "+Name);
             }
         }
 
         public void Sleep()
         {
-            if (this.sleepyLevel < 80)
+            if (this.sleepyLevel < 60)
             {
-                Console.WriteLine("\n\tI'm bright eyed and bushy tailed, no time for napping!");
+                Console.WriteLine("\n\tI'm bright eyed and bushy tailed, no time for napping! --- "+Name);
             }
-            else if (this.sleepyLevel >= 80)
+            else if (this.sleepyLevel >= 60)
             {
-                this.sleepyLevel -= 50;
-                this.happyLevel += 10;
-                this.boredomLevel += 20;
-                this.hungerLevel += 20;
-                Console.WriteLine("\n\tYaaawnn... Time for some Zzzz's");
+                this.sleepyLevel -= 20;
+                this.happyLevel -= 20; //he's a cranky sleeper
+                this.boredomLevel += 10;
+                this.hungerLevel += 10;
+                Console.WriteLine("\n\tYaaawnn... Time for some Zzzz's --- "+Name);
             }
         }
 
         public void Play()
         {
-            this.hungerLevel += 40;
-            this.sleepyLevel += 20;
-            this.happyLevel += 30;
-            this.boredomLevel -= 30;
+            this.hungerLevel += 10;
+            this.sleepyLevel += 10;
+            this.happyLevel += 10;
+            this.boredomLevel -= 10;
             Console.WriteLine("Fun! What do you want to play?");
             Console.WriteLine("1. Hide and seek");
-            Console.WriteLine("2. Do a swim race");
+            Console.WriteLine("2. Have a swimming race");
             int playAnswer = int.Parse(Console.ReadLine());
             switch(playAnswer)
             {
                 case 1:
                     Console.WriteLine("\n\tI'll count to 10..");
                     Console.WriteLine("\t1, 2, 3, 4, 5, 6, 7, 8, 9, 10... Ready or not here I come!");
-                    Console.WriteLine("\tI found you! That was fun!");
+                    Console.WriteLine("\tI found you! That was fun! --- "+ Name );
                     break;
                 case 2:
                     Console.WriteLine("\n\tOkay! On your mark, get set... GO!");
-                    Console.WriteLine("\tI won!!");
+                    Console.WriteLine("\tI won!! --- " + Name);
                     break;
                 default:
-                    Console.WriteLine("\n\tOr we can just dance... Woo hoo!");
+                    Console.WriteLine("\n\tOr we can just dance... Woo hoo! --- "+Name);
                     break;
             }
         }
