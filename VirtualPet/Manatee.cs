@@ -136,7 +136,7 @@ namespace VirtualPet
                 //this.happyLevel += 2;
                 this.boredomLevel += 10;
                 Console.WriteLine("\n\tWhy thank you! I think I will have a snack! --- "+Name);
-                Console.WriteLine("\nWhat do you want to feed Hugh?");
+                Console.WriteLine("\nWhat do you want to feed {0}?", Name);
                 Console.WriteLine("1. Apple \n2. Fish");
                 int snack = int.Parse(Console.ReadLine());
                 if(snack == 1 || snack ==2)
